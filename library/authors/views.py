@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from rest_framework.views import ModelViewSet
-from .model import Author
+from rest_framework.viewsets import ModelViewSet
+from .models import Author
 from .serializers import AuthorModelSerializer
 
 
