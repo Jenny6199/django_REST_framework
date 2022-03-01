@@ -37,7 +37,7 @@ class ArticleModelSerializer(ModelSerializer):
         exclude = ['id']
 
 
-class BookModelSerializer(ModelSerializer):
+class BookModelSerializer(HyperlinkedModelSerializer):
     """
     Сериализатор для модели Book,
     наследуется от ModelSerializer, 
@@ -48,4 +48,3 @@ class BookModelSerializer(ModelSerializer):
     class Meta:
         model = Book
         fields = '__all__'
-
