@@ -1,5 +1,4 @@
-from rest_framework.serializers import ModelSerializer, StringRelatedField
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer, StringRelatedField, HyperlinkedModelSerializer
 from .models import Article, Author, Biography, Book
 
 
