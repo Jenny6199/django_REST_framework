@@ -28,13 +28,13 @@ class ArticleModelSerializer(ModelSerializer):
     """
     Сериализатор для модели Article, 
     наследуется от ModelSerializer,
-    поля - исключено поле name
+    поля - исключено поле id
     """
     author = AuthorModelSerializer()
 
     class Meta:
         model = Article
-        exclude = ['article_name']
+        exclude = ['id']
 
 
 class BookModelSerializer(ModelSerializer):
