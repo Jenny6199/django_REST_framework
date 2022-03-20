@@ -30,6 +30,7 @@ class AuthorSpecialViewSet(
     queryset = Author.objects.all()
     renderer_class = [JSONRenderer, BrowsableAPIRenderer]
     serializer_class = AuthorModelSerializer
+    filterset_fields = ['last_name', 'first_name']
 
 
 class BiographyModelViewSet(ModelViewSet):
