@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer, StringRelatedField, Hype
 from .models import Article, Author, Biography, Book
 
 
-class AuthorModelSerializer(HyperlinkedModelSerializer):
+class AuthorModelSerializer(ModelSerializer):
     """
     Сериализатор для модели Author,
     наследуется от HyperlinkedModelSerializer,
