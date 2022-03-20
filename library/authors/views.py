@@ -1,8 +1,10 @@
+from email.policy import default
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from rest_framework.pagination import LimitOffsetPagination
 from .models import Author, Biography, Book, Article
 from .serializers import AuthorModelSerializer, BiographyModelSerializer, ArticleModelSerializer, BookModelSerializer
 
@@ -13,6 +15,12 @@ class AuthorModelViewSet(ModelViewSet):
     """
     queryset = Author.objects.all()
     serializer_class = AuthorModelSerializer
+
+class ProjectLimitOffsetPagination(LimitOffsetPagination):
+    """
+    Настройки пагинатора для проекта
+    """
+    default_limit = 3
 
 
 class AuthorSpecialViewSet(
@@ -31,6 +39,7 @@ class AuthorSpecialViewSet(
     renderer_class = [JSONRenderer, BrowsableAPIRenderer]
     serializer_class = AuthorModelSerializer
     filterset_fields = ['last_name', 'first_name']
+    pagination_class = ProjectLimitOffsetPagination
 
 
 class BiographyModelViewSet(ModelViewSet):
