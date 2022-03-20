@@ -9,13 +9,6 @@ from .models import Author, Biography, Book, Article
 from .serializers import AuthorModelSerializer, BiographyModelSerializer, ArticleModelSerializer, BookModelSerializer
 
 
-class AuthorModelViewSet(ModelViewSet):
-    """
-    Класс набора представлений для модели Author
-    """
-    queryset = Author.objects.all()
-    serializer_class = AuthorModelSerializer
-
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
     """
     Настройки пагинатора для проекта
@@ -29,7 +22,7 @@ class AuthorSpecialViewSet(
     RetrieveModelMixin,
     UpdateModelMixin,
     DestroyModelMixin,
-    ListModelMixin
+    ListModelMixin,
 ):
     """
     Класс набора представлений для модели Author.
@@ -42,20 +35,42 @@ class AuthorSpecialViewSet(
     pagination_class = ProjectLimitOffsetPagination
 
 
-class BiographyModelViewSet(ModelViewSet):
+class BiographySpecialViewSet(
+    GenericViewSet,
+    CreateModelMixin, 
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    ListModelMixin,
+):
     """
-    Класс набора представлений для модели Biography
+    Класс набора представлений для модели Biography.
+    Реализованы все  методы CRUD.
     """
     queryset = Biography.objects.all()
+    renderer_class = [JSONRenderer, BrowsableAPIRenderer,]
     serializer_class = BiographyModelSerializer
+    filterset_fields = ['author']
+    pagination_class = ProjectLimitOffsetPagination
 
 
-class ArticleModelViewSet(ModelViewSet):
+class ArticleSpecialViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    ListModelMixin,
+):
     """
-    Класс набора представлений для модели Article
+    Класс набора представлений для модели Article.
+    Реализованы все методы CRUD.
     """
     queryset = Article.objects.all()
+    renderer_class = [JSONRenderer, BrowsableAPIRenderer]
     serializer_class = ArticleModelSerializer
+    filterset_field = ['author',]
+    pagination_class = ProjectLimitOffsetPagination
 
 
 class BookModelViewSet(ModelViewSet):

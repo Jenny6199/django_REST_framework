@@ -17,13 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from authors.views import BiographyModelViewSet, ArticleModelViewSet, BookModelViewSet, AuthorSpecialViewSet
+from authors.views import BiographySpecialViewSet, ArticleSpecialViewSet, BookModelViewSet, AuthorSpecialViewSet
 
 router = DefaultRouter()
 router.register('authors', AuthorSpecialViewSet, basename='authors')
 router.register('books', BookModelViewSet)
-router.register('articles', ArticleModelViewSet)
-router.register('biographies', BiographyModelViewSet)
+router.register('articles', ArticleSpecialViewSet, basename='articles')
+router.register('biographies', BiographySpecialViewSet, basename='biographies')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
