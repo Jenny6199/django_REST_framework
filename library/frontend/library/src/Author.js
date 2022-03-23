@@ -10,7 +10,7 @@ const AuthroItem = ({item}) => {
     )
 }
 
-const AuthorLIst = ({items}) => {
+const AuthorList = ({items}) => {
     return (
         <table>
             <tr>
@@ -23,4 +23,4 @@ const AuthorLIst = ({items}) => {
     )
 }
 
-export default AuthorLIst
+export default AuthorList
