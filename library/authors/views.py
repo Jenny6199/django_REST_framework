@@ -1,4 +1,5 @@
 from email.policy import default
+from typing import Generic
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.viewsets import GenericViewSet
@@ -73,9 +74,20 @@ class ArticleSpecialViewSet(
     pagination_class = ProjectLimitOffsetPagination
 
 
-class BookModelViewSet(ModelViewSet):
+class BookSpecialViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    ListModelMixin,
+):
     """
-    Класс набора представлений для модели Book
+    Класс набора представлений для модели Book.
+    Реализованы все методы CRUD.
     """
     queryset = Book.objects.all()
+    renderer_class = [JSONRenderer,BrowsableAPIRenderer]
     serializer_class = BookModelSerializer
+    filterset_field = ['author']
+    pagination_clas = ProjectLimitOffsetPagination
