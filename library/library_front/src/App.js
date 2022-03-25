@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthorList from './components/Author'
 import BookList from './components/Books'
+import {HashRouter, Route} from 'react-router-dom'
 
 class App extends React.Component {
 
@@ -23,8 +24,10 @@ class App extends React.Component {
   render() {
     return (
       <div className ="App">
-        <AuthorList items={this.state.authors} />
-        <BookList items={this.state.books} />
+        <HashRouter>
+          <Route exact path='/' component={() => <AuthorList items={this.state.authors} />} />
+          <Route exact path='/books' component={() => <BookList items={this.state.books} />} />
+        </HashRouter>
       </div>
     )
   }
