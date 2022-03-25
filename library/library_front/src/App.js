@@ -2,7 +2,7 @@ import React from 'react'
 import AuthorList from './components/Author'
 import BookList from './components/Books'
 import AuthorBookList from './components/AuthorBook'
-import {HashRouter, Route, Link, Switch, Redirect} from 'react-router-dom'
+import {BrowserRouter, Route, Link, Switch, Redirect} from 'react-router-dom'
 
 const NotFound404 =({ location }) => {
   return (
@@ -33,7 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <div className ="App">
-        <HashRouter>
+        <BrowserRouter>
           <nav>
             <ul>
               <li>
@@ -51,7 +51,7 @@ class App extends React.Component {
             <Redirect from='/authors' to='/' />
             <Route component={NotFound404} />           
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     )
   }
